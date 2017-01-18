@@ -1,0 +1,158 @@
+<html lang="en">
+<!-- Перша веб-сторінка повинна містити веб-форму з наступними полями:
+Ім’я, прізвище, дата народження, телефон, електронна пошта, країна, місто (область).
+Дані, заповнені користувачем, повинні перевірятись безпосередньо в браузері перед відправленням форми на сервер. В найпростішому випадку — щоб всі поля були заповнені. В більш складному випадку можна провести верифікацію полів. При незаповнених полях користувач інформується про те, що не гаразд з формою. Форма відправляється на обробку на сервері після проходження перевірки засобами браузера.
+Друга веб-сторінка повинна показувати всі введені користувачами дані.
+Всі дані повинні зберігатись в SQL базі даних.
+ -->
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          crossorigin="anonymous">
+    <link href="http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100" rel="stylesheet">
+
+    <!--Font Awesome (added because you use icons in your prepend/append)-->
+    <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css"/>
+
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+
+    <!-- Custom CSS/JS file -->
+    <link rel="stylesheet" type="text/css" href="/resources/css/style.css"/>
+    <script src="resources/js/datepicker.js"></script>
+    <script src="resources/js/validator.js"></script>
+</head>
+<body>
+<!-- Меню navbar -->
+<nav class="navbar navbar-default">
+    <div class="navbar-header">
+        <a href="#" class="navbar-brand"><img src="resources/logo.png"></a>
+    </div>
+    <!-- Содержимое меню (коллекция навигационных ссылок, формы и др.) -->
+    <div class="collapse navbar-collapse" id="main-menu">
+        <!-- Список ссылок, расположенных слева -->
+        <ul class="nav navbar-nav">
+            <!--Элемент с классом active отображает ссылку подсвеченной -->
+            <li><a href="\">Главная</a></li>
+            <li><a href="\ShowInfo">Таблица с данными гостей</a></li>
+        </ul>
+    </div>
+</nav>
+<h3>ГОСТЕВАЯ КНИГА</h3>
+<!--HTML Form-->
+<div class="bootstrap-iso ">
+    <div class="container-fluid col-md-offset-2">
+        <div class="row">
+            <form id="main-form" class="form-horizontal" role="form" method="get" action="/MainServlet">
+                <!--ИМЯ-->
+                <div class="form-group has-feedback">
+                    <label for="name" class="control-label col-xs-3">Имя:</label>
+                    <div class="col-xs-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input id="name" name="name" type="text" class="form-control"  required="required">
+                        </div>
+                        <span class="glyphicon form-control-feedback"></span>
+                    </div>
+                </div>
+                <!--ФАМИЛИЯ-->
+                <div class="form-group has-feedback">
+                    <label for="surname" class="control-label col-xs-3">Фамилия:</label>
+                    <div class="col-xs-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input id="surname" name="surname" type="text" class="form-control" required="required">
+                        </div>
+                        <span class="glyphicon form-control-feedback"></span>
+                    </div>
+                </div>
+                <!--ДАТА РОЖДЕНИЯ-->
+                <div class="form-group has-feedback">
+                    <label for="date" class="control-label col-xs-3">Дата рождения:</label>
+                    <div class="col-xs-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-calendar-check-o"></i></span>
+                            <input id="date" name="date" type="text" class="form-control" placeholder="MM/DD/YYYY"
+                                   required="required">
+                        </div>
+                        <span class="glyphicon form-control-feedback"></span>
+                    </div>
+                </div>
+                <!--НОМЕР ТЕЛЕФОНА-->
+                <div class="form-group has-feedback">
+                    <label for="number" class="control-label col-xs-3">Номер телефона:</label>
+                    <div class="col-xs-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
+                            <input id="number" name="number" type="text" class="form-control" required="required">
+                        </div>
+                        <span class="glyphicon form-control-feedback"></span>
+                    </div>
+                </div>
+                <!--EMAIL-->
+                <div class="form-group has-feedback">
+                    <label for="email" class="control-label col-xs-3">Email:</label>
+                    <div class="col-xs-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                            <input id="email" type="email" class="form-control" required="required" name="email">
+                        </div>
+                        <span class="glyphicon form-control-feedback"></span>
+                    </div>
+                </div>
+                <!--СТРАНА-->
+                <div class="form-group has-feedback">
+                    <label for="country" class="control-label col-xs-3">Страна:</label>
+                    <div class="col-xs-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                            <input id="country" name="country" type="text" class="form-control" required="required">
+                        </div>
+                        <span class="glyphicon form-control-feedback"></span>
+                    </div>
+                </div>
+                <!--ГОРОД/ОБЛАСТЬ-->
+                <div class="form-group has-feedback">
+                    <label for="region" class="control-label col-xs-3">Город\Область:</label>
+                    <div class="col-xs-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                            <input id="region" name="region" type="text" class="form-control" required="required">
+                        </div>
+                        <span class="glyphicon form-control-feedback"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-sm-offset-7 col-sm-1 ">
+                        <button class="btn btn-primary" id="send" type="submit">
+                            Отправить
+                        </button>
+                    </div>
+                </div>
+                <!--Сообщеие об успешной регистрации-->
+                <div class="alert alert-success hidden col-xs-10" id="success-alert">
+                    <h2>Успех</h2>
+                    <div>Ваши данные были успешно отправлены на сервер, спасибо!</div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Include Date Range Picker -->
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+</body>
+</html>
